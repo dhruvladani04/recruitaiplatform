@@ -2,6 +2,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScoreBadge } from "./ScoreBadge";
+import { ResumeViewer } from "./ResumeViewer";
 import { Candidate } from "@/types/candidate";
 import { FileText, Mail, Phone, Calendar, CheckCircle, XCircle, Sparkles, ThumbsUp, ThumbsDown } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
@@ -66,17 +67,13 @@ export function CandidateDetailSheet({
           {/* Content - Two Column Layout */}
           <div className="flex-1 flex overflow-hidden">
             {/* Left Column - Resume Viewer */}
-            <div className="w-1/2 border-r border-border p-6 overflow-auto">
+            <div className="w-1/2 border-r border-border p-6 flex flex-col">
               <div className="flex items-center gap-2 mb-4">
                 <FileText className="h-5 w-5 text-primary" />
                 <h3 className="font-semibold text-foreground">Resume</h3>
               </div>
-              <div className="bg-muted/50 rounded-lg border border-border aspect-[8.5/11] flex items-center justify-center">
-                <div className="text-center text-muted-foreground">
-                  <FileText className="h-16 w-16 mx-auto mb-4 opacity-50" />
-                  <p className="font-medium">Resume PDF Viewer</p>
-                  <p className="text-sm mt-1">Document preview placeholder</p>
-                </div>
+              <div className="flex-1 min-h-0">
+                <ResumeViewer url={candidate.resumeUrl} />
               </div>
             </div>
 

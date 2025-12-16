@@ -15,6 +15,7 @@ export interface Candidate {
   email: string;
   phone: string;
   appliedDate: string;
+  resumeUrl: string | null;
   summary: string;
   strengths: string[];
   weaknesses: string[];
