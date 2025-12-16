@@ -1,5 +1,8 @@
 import { Candidate } from "@/types/candidate";
 
+// Sample PDF URL for demo purposes
+const SAMPLE_RESUME_URL = "https://www.w3.org/WAI/WCAG21/Techniques/pdf/img/table-word.pdf";
+
 export const mockCandidates: Candidate[] = [
   {
     id: "1",
@@ -11,6 +14,7 @@ export const mockCandidates: Candidate[] = [
     email: "sarah.johnson@email.com",
     phone: "+1 (555) 123-4567",
     appliedDate: "2024-01-15",
+    resumeUrl: SAMPLE_RESUME_URL,
     summary: "Experienced frontend developer with 7+ years building scalable React applications. Strong background in TypeScript and modern CSS frameworks.",
     strengths: [
       "Expert-level React and TypeScript skills",
@@ -33,6 +37,7 @@ export const mockCandidates: Candidate[] = [
     email: "m.chen@email.com",
     phone: "+1 (555) 234-5678",
     appliedDate: "2024-01-14",
+    resumeUrl: SAMPLE_RESUME_URL,
     summary: "Full stack developer proficient in Node.js and React. Has shipped multiple products from concept to production.",
     strengths: [
       "Strong full-stack capabilities",
@@ -54,6 +59,7 @@ export const mockCandidates: Candidate[] = [
     email: "emily.r@email.com",
     phone: "+1 (555) 345-6789",
     appliedDate: "2024-01-12",
+    resumeUrl: SAMPLE_RESUME_URL,
     summary: "Creative UX designer with a passion for user-centered design. Has worked with startups and enterprise clients.",
     strengths: [
       "Strong design portfolio",
@@ -75,6 +81,7 @@ export const mockCandidates: Candidate[] = [
     email: "j.wilson@email.com",
     phone: "+1 (555) 456-7890",
     appliedDate: "2024-01-10",
+    resumeUrl: null,
     summary: "Junior developer looking to transition into backend development. Limited professional experience.",
     strengths: [
       "Eager to learn",
@@ -96,6 +103,7 @@ export const mockCandidates: Candidate[] = [
     email: "a.foster@email.com",
     phone: "+1 (555) 567-8901",
     appliedDate: "2024-01-08",
+    resumeUrl: SAMPLE_RESUME_URL,
     summary: "Experienced DevOps engineer with expertise in AWS, Kubernetes, and CI/CD pipelines. Strong automation background.",
     strengths: [
       "AWS certified professional",
@@ -117,6 +125,7 @@ export const mockCandidates: Candidate[] = [
     email: "d.kim@email.com",
     phone: "+1 (555) 678-9012",
     appliedDate: "2024-01-16",
+    resumeUrl: SAMPLE_RESUME_URL,
     summary: "Product manager with 3 years experience in B2B SaaS. Good understanding of agile methodologies.",
     strengths: [
       "Strong analytical skills",
@@ -138,6 +147,7 @@ export const mockCandidates: Candidate[] = [
     email: "l.thompson@email.com",
     phone: "+1 (555) 789-0123",
     appliedDate: "2024-01-13",
+    resumeUrl: SAMPLE_RESUME_URL,
     summary: "Senior frontend architect with 10+ years experience. Led development of several high-traffic applications.",
     strengths: [
       "Architecture expertise",
@@ -159,6 +169,7 @@ export const mockCandidates: Candidate[] = [
     email: "r.martinez@email.com",
     phone: "+1 (555) 890-1234",
     appliedDate: "2024-01-17",
+    resumeUrl: SAMPLE_RESUME_URL,
     summary: "Data scientist with ML expertise. Strong Python and SQL skills with focus on predictive modeling.",
     strengths: [
       "Strong ML fundamentals",
