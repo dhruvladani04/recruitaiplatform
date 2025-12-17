@@ -28,7 +28,7 @@ export function AppSidebar() {
             <Briefcase className="h-5 w-5 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="text-lg font-semibold text-sidebar-accent-foreground">TalentFlow</h1>
+            <h1 className="text-lg font-semibold text-sidebar-accent-foreground">Recruit AI</h1>
             <p className="text-xs text-sidebar-muted">ATS Platform</p>
           </div>
         </div>

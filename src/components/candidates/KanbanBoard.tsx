@@ -116,6 +116,18 @@ export function KanbanBoard() {
     });
   };
 
+  const handleResumeUpload = (candidateId: string, resumeUrl: string) => {
+    setCandidates((prev) =>
+      prev.map((c) =>
+        c.id === candidateId ? { ...c, resumeUrl } : c
+      )
+    );
+    // Update selected candidate if it's the same one
+    if (selectedCandidate?.id === candidateId) {
+      setSelectedCandidate((prev) => prev ? { ...prev, resumeUrl } : null);
+    }
+  };
+
   return (
     <>
       <DndContext
@@ -154,6 +166,7 @@ export function KanbanBoard() {
         onOpenChange={setSheetOpen}
         onApprove={handleApprove}
         onReject={handleReject}
+        onResumeUpload={handleResumeUpload}
       />
     </>
   );
