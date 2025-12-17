@@ -4,8 +4,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScoreBadge } from "./ScoreBadge";
 import { ResumeViewer } from "./ResumeViewer";
 import { Candidate } from "@/types/candidate";
-import { FileText, Mail, Phone, Calendar, CheckCircle, XCircle, Sparkles, ThumbsUp, ThumbsDown } from "lucide-react";
+import { FileText, Mail, Phone, Calendar, CheckCircle, XCircle, Sparkles, ThumbsUp, ThumbsDown, Upload } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { useRef, useState } from "react";
+import { toast } from "sonner";
 
 interface CandidateDetailSheetProps {
   candidate: Candidate | null;
@@ -13,6 +15,7 @@ interface CandidateDetailSheetProps {
   onOpenChange: (open: boolean) => void;
   onApprove: (candidate: Candidate) => void;
   onReject: (candidate: Candidate) => void;
+  onResumeUpload?: (candidateId: string, resumeUrl: string) => void;
 }
 
 export function CandidateDetailSheet({
@@ -21,8 +24,34 @@ export function CandidateDetailSheet({
   onOpenChange,
   onApprove,
   onReject,
+  onResumeUpload,
 }: CandidateDetailSheetProps) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [localResumeUrl, setLocalResumeUrl] = useState<string | null>(null);
+
   if (!candidate) return null;
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    if (file.type !== "application/pdf") {
+      toast.error("Please upload a PDF file");
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error("File size must be less than 10MB");
+      return;
+    }
+
+    const url = URL.createObjectURL(file);
+    setLocalResumeUrl(url);
+    onResumeUpload?.(candidate.id, url);
+    toast.success("Resume uploaded successfully");
+  };
+
+  const currentResumeUrl = localResumeUrl || candidate.resumeUrl;
 
   const initials = candidate.name
     .split(" ")
@@ -68,12 +97,31 @@ export function CandidateDetailSheet({
           <div className="flex-1 flex overflow-hidden">
             {/* Left Column - Resume Viewer */}
             <div className="w-1/2 border-r border-border p-6 flex flex-col">
-              <div className="flex items-center gap-2 mb-4">
-                <FileText className="h-5 w-5 text-primary" />
-                <h3 className="font-semibold text-foreground">Resume</h3>
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <FileText className="h-5 w-5 text-primary" />
+                  <h3 className="font-semibold text-foreground">Resume</h3>
+                </div>
+                <div>
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleFileUpload}
+                    accept="application/pdf"
+                    className="hidden"
+                  />
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => fileInputRef.current?.click()}
+                  >
+                    <Upload className="h-4 w-4 mr-2" />
+                    Upload PDF
+                  </Button>
+                </div>
               </div>
               <div className="flex-1 min-h-0">
-                <ResumeViewer url={candidate.resumeUrl} />
+                <ResumeViewer url={currentResumeUrl} />
               </div>
             </div>
 
